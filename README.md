@@ -1,6 +1,6 @@
 # HRMS (HUMAN RESOURCE MANAGEMENT SYSTEM)
 
-[Click here](https://github.com/TunahanTuna/HRMSProject/tree/master/hrms) go to main directory
+[Click here](https://github.com/TunahanTuna/HRMSProject/tree/master/hrms/src/main/java/javacamp/hrms) go to main directory
 
 
 ### Current Dependencies
