@@ -10,3 +10,11 @@
 * Spring Data JPA
 * PostgreSQL Driver
 * Lombok
+
+
+#### 7. Gün Dersi Ödev 1 Swagger İmplementasyonu
+
+![UI](https://github.com/TunahanTuna/HRMSProject/blob/master/screen_shots/swagger_ui.png)
+![App](https://github.com/TunahanTuna/HRMSProject/blob/master/screen_shots/swagger_app.png)
+
+*<--------------------------------------------------------------------------------------------------------------------------------------------------->*
