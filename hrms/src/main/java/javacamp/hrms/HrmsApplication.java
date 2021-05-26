@@ -16,7 +16,7 @@ public class HrmsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HrmsApplication.class, args);
 	}
-	
+	// Swagger
 	@Bean
     public Docket api() { 
         return new Docket(DocumentationType.SWAGGER_2)  
