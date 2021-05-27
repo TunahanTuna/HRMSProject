@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @Data
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 @PrimaryKeyJoinColumn(name = "id")
 @Table(name = "employers")
 public class Employer extends User{
@@ -28,5 +28,12 @@ public class Employer extends User{
 	
 	@Column(name = "phone_number")
 	private String phone_number;
+	
+	public Employer (String company_name, String web_site, String phone_number, String mail, String password) {
+		super(mail,password);
+		this.company_name = company_name;
+		this.phone_number = phone_number;
+		this.web_site = web_site;
+	}
 	
 }

@@ -14,12 +14,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 @PrimaryKeyJoinColumn(name = "id")
 @Table(name = "candidates")
 public class Candidate extends User {
-
+	
 	@Column(name = "first_name")
 	private String first_name;
 	
@@ -31,5 +31,13 @@ public class Candidate extends User {
 	
 	@Column(name = "birthdate")
 	private Date birthdate;
+	
+	public Candidate (String first_name, String last_name, String nationality_id, Date birthdate, String mail, String password) {
+		super(mail,password);
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.nationality_id = nationality_id;
+		this.birthdate = birthdate;
+	}
 }
 

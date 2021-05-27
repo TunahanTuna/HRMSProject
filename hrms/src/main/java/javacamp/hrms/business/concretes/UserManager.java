@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 
 import javacamp.hrms.business.abstracts.UserService;
 import javacamp.hrms.business.constraints.Info;
+import javacamp.hrms.core.utilities.business.BusinessEngine;
 import javacamp.hrms.core.utilities.results.DataResult;
 import javacamp.hrms.core.utilities.results.ErrorResult;
 import javacamp.hrms.core.utilities.results.Result;
 import javacamp.hrms.core.utilities.results.SuccessDataResult;
 import javacamp.hrms.core.utilities.results.SuccessResult;
+import javacamp.hrms.core.utilities.verification_tool.CodeGenerator;
 import javacamp.hrms.dataAccess.abstracts.UserDao;
 import javacamp.hrms.entities.abstracts.User;
 
@@ -32,8 +34,15 @@ public class UserManager<T extends User> implements UserService<T>{
 
 	@Override
 	public Result add(T t) {
-		this.userDao.save(t);
-		return new SuccessResult(Info.addInfo);
+		Result result = BusinessEngine.run(isEmailExist(t.getMail()));
+		
+		if(result.isSuccess()) {
+			t.setU_id(CodeGenerator.UuIdCodeGenerator());
+			this.userDao.save(t);
+			return new SuccessResult(Info.addInfo);
+		}
+		
+		return result;
 	}
 	
 	public Result isEmailExist(String eMail) {

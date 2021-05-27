@@ -23,7 +23,7 @@ public class Info {
 	
 	
 	//jobposition
-    public static String jobTitleExistingInfo = "Bu is bbolumu zaten mevcut";
+    public static String jobTitleExistingInfo = "Bu is bolumu zaten mevcut";
     public static String jobPositionAddedInfo = "Is bolumu eklendi";
     public static String jobPositionListedInfo = "Is bolumleri listelendi";
 
@@ -32,5 +32,10 @@ public class Info {
     public static String activationCodeDeletedInfo = "Aktivasyon kodu silindi.";
     public static String activationCodeUpdatedInfo = "Aktivasyon kodu guncellendi.";
     public static String activationCodeListedInfo = "Aktivasyon kodlari listelendi.";
+    public static String codeNotFoundInfo = " Kod bulunamadi";
+    public static String activationExistInfo = "Dogrulanmis mail";
+    public static String codeExpiredInfo = "Aktivasyon kodu zaman asimi";
+    public static String codeNotEqualInfo = "Aktivasyon kodu gecersiz";
+    public static String codeVerifiedInfo = "Aktivasyon kod dogrulaması basarili";
 	
 }

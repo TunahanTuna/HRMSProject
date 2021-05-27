@@ -14,7 +14,7 @@ import javacamp.hrms.entities.concretes.Candidate;
 public class CandidateValidator extends UserValidator implements CandidateValidatorService{
 
 	@Override
-	public Result employerNullCheck(Candidate candidate) {
+	public Result candidateNullCheck(Candidate candidate) {
 		String firstName = candidate.getFirst_name();
         String lastName = candidate.getLast_name();
         String nationalityId = candidate.getNationality_id();

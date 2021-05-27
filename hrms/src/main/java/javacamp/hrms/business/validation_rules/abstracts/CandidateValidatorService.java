@@ -5,7 +5,7 @@ import javacamp.hrms.entities.concretes.Candidate;
 
 public interface CandidateValidatorService {
 
-	Result employerNullCheck(Candidate candidate);
+	Result candidateNullCheck(Candidate candidate);
 	Result nationalityIdValid(String nationalityIdentity);
 	
 }
