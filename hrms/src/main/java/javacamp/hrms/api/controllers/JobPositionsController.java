@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javacamp.hrms.business.abstracts.JobPositionsService;
+import javacamp.hrms.business.abstracts.JobPositionService;
 import javacamp.hrms.core.utilities.results.DataResult;
 import javacamp.hrms.core.utilities.results.Result;
 import javacamp.hrms.entities.concretes.JobPosition;
@@ -18,21 +18,23 @@ import javacamp.hrms.entities.concretes.JobPosition;
 @RequestMapping("/api/jobpositions")
 public class JobPositionsController {
 
-	JobPositionsService jobPositionsService;
+	JobPositionService jobPositionService;
 
 	@Autowired
-	public JobPositionsController(JobPositionsService jobPositionsService) {
+	public JobPositionsController(JobPositionService jobPositionService) {
 		super();
-		this.jobPositionsService = jobPositionsService;
+		this.jobPositionService = jobPositionService;
 	}
 	
 	@GetMapping("/getall")
 	public DataResult<List<JobPosition>> getAll(){
 	
-		return this.jobPositionsService.getAll();
+		return this.jobPositionService.getAll();
 	}
+	
 	@PostMapping("/add")
-	public Result add( @RequestBody JobPosition jobPosition) {
-		return this.jobPositionsService.add(jobPosition);
+	public Result add(@RequestBody JobPosition jobPosition){
+		
+		return this.jobPositionService.add(jobPosition);
 	}
 }

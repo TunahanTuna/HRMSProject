@@ -2,56 +2,45 @@ package javacamp.hrms.business.concretes;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javacamp.hrms.business.abstracts.UserService;
 import javacamp.hrms.business.constraints.Info;
-import javacamp.hrms.core.utilities.business.BusinessEngine;
 import javacamp.hrms.core.utilities.results.DataResult;
-import javacamp.hrms.core.utilities.results.ErrorResult;
 import javacamp.hrms.core.utilities.results.Result;
-import javacamp.hrms.core.utilities.results.SuccessDataResult;
-import javacamp.hrms.core.utilities.results.SuccessResult;
-import javacamp.hrms.core.utilities.verification_tool.CodeGenerator;
+import javacamp.hrms.core.utilities.results.*;
 import javacamp.hrms.dataAccess.abstracts.UserDao;
 import javacamp.hrms.entities.abstracts.User;
 
 @Service
-public class UserManager<T extends User> implements UserService<T>{
+public class UserManager implements UserService{
 
 	private UserDao userDao;
 	
-	
-	
-	public UserManager(UserDao<T> userDao) {
+	@Autowired
+	public UserManager(UserDao userDao) {
+		super();
 		this.userDao = userDao;
 	}
 
 	@Override
-	public DataResult<List<T>> getAll() {
-		return new SuccessDataResult<List<T>>(this.userDao.findAll(),Info.listInfo);
+	public Result add(User user) {
+		if(getUserByEmail(user.getEmail()).getData() != null) {
+			return new ErrorResult(Info.emailExistingInfo);
+		}
+		this.userDao.save(user);
+		return new SuccessResult();
 	}
 
 	@Override
-	public Result add(T t) {
-		Result result = BusinessEngine.run(isEmailExist(t.getMail()));
-		
-		if(result.isSuccess()) {
-			t.setU_id(CodeGenerator.UuIdCodeGenerator());
-			this.userDao.save(t);
-			return new SuccessResult(Info.addInfo);
-		}
-		
-		return result;
+	public DataResult<List<User>> getAll() {
+		return new SuccessDataResult<List<User>>(this.userDao.findAll());
 	}
-	
-	public Result isEmailExist(String eMail) {
-		if(userDao.findByEmail(eMail).isPresent()) {
-			return new ErrorResult(Info.emailExistingInfo);
-		}
-		
-		return new SuccessResult();
+
+	@Override
+	public DataResult<User> getUserByEmail(String email) {
+		return new SuccessDataResult<User>(this.userDao.findByEmail(email));
 	}
-	
 
 }

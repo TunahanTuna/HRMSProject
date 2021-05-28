@@ -1,12 +1,16 @@
 package javacamp.hrms.dataAccess.abstracts;
 
+
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import javacamp.hrms.entities.concretes.Employer;
+import javacamp.hrms.entities.concretes.JobPosition;
 
 
 @EnableJpaRepositories
-public interface EmployerDao extends JpaRepository<Employer, Integer> {
-
+public interface JobPositionDao extends JpaRepository<JobPosition, Integer> {
+	
+	JobPosition findByPositionName(String positionName);
+	
 }

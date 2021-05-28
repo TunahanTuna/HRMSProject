@@ -5,11 +5,13 @@ import java.util.List;
 import javacamp.hrms.core.utilities.results.DataResult;
 import javacamp.hrms.core.utilities.results.Result;
 import javacamp.hrms.entities.abstracts.User;
-// Generic Yapı
-public interface UserService<T extends User> {
-	
-	DataResult<List<T>>getAll();
-	
-	Result add(T t);
 
+public interface UserService {
+
+	Result add(User user);
+	
+	public DataResult<List<User>> getAll();
+	
+	public DataResult<User> getUserByEmail(String email);
+	
 }

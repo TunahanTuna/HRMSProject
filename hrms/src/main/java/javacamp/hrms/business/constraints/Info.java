@@ -26,6 +26,8 @@ public class Info {
     public static String jobTitleExistingInfo = "Bu is bolumu zaten mevcut";
     public static String jobPositionAddedInfo = "Is bolumu eklendi";
     public static String jobPositionListedInfo = "Is bolumleri listelendi";
+    public static String jobPositionListedByPositionNameInfo = "Is bolumu pozisyon adına gore getirildi";
+
 
     //activationCode
     public static String activationCodeAddedInfo = "Aktivasyon kodu eklendi.";

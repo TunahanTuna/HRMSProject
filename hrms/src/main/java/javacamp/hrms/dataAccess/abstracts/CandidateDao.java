@@ -1,11 +1,14 @@
 package javacamp.hrms.dataAccess.abstracts;
 
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import javacamp.hrms.entities.concretes.Candidate;
 
-public interface CandidateDao extends UserDao<Candidate>{
 
-	Optional<Candidate> findByNationalIdentity(String nationalIdentity);
+@EnableJpaRepositories
+public interface CandidateDao extends JpaRepository<Candidate, Integer> {
+
+	Candidate findByNationalityId(String nationalityId);
 	
 }

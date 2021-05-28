@@ -1,69 +1,48 @@
 package javacamp.hrms.business.concretes;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
 
 import javacamp.hrms.business.abstracts.CandidateService;
 import javacamp.hrms.business.constraints.Info;
-import javacamp.hrms.business.validation_rules.abstracts.CandidateValidatorService;
-import javacamp.hrms.core.adapters.mernis.FakePerson;
-import javacamp.hrms.core.adapters.mernis.concrete.FakeMernis;
-import javacamp.hrms.core.adapters.mernis.service.FakeCheckService;
-import javacamp.hrms.core.adapters.mernis.service.UserCheckService;
-import javacamp.hrms.core.utilities.business.BusinessEngine;
-import javacamp.hrms.core.utilities.results.ErrorResult;
+import javacamp.hrms.core.utilities.results.DataResult;
 import javacamp.hrms.core.utilities.results.Result;
-import javacamp.hrms.core.utilities.results.SuccessResult;
+import javacamp.hrms.core.utilities.results.*;
 import javacamp.hrms.dataAccess.abstracts.CandidateDao;
-import javacamp.hrms.dataAccess.abstracts.UserDao;
 import javacamp.hrms.entities.concretes.Candidate;
 
-public class CandidateManager extends UserManager<Candidate> implements CandidateService{
+
+@Service
+public class CandidateManager implements CandidateService {
 
 	private CandidateDao candidateDao;
-	private FakeCheckService fakeCheckService;
-	private CandidateValidatorService candidateValidatorService;
-	
 	
 	@Autowired
-	public CandidateManager(UserDao<Candidate> userDao, 
-							FakeCheckService fakeCheckService,
-							CandidateValidatorService candidateValidatorService) {
-		
-		super(userDao);
-		this.candidateDao = (CandidateDao) userDao;
-		this.fakeCheckService = fakeCheckService;
-		this.candidateValidatorService = candidateValidatorService;
+	public CandidateManager(CandidateDao candidateDao) {
+		super();
+		this.candidateDao = candidateDao;
 	}
 
+	@Override
+	public DataResult<List<Candidate>> getAll() {
+		return new SuccessDataResult<List<Candidate>>(this.candidateDao.findAll(), Info.listInfo);
+	}
 
 	@Override
-    public Result add(Candidate candidate) {
-            Result result = BusinessEngine.run((isIdentityNumberExist(candidate.getNationality_id())),
-                    isMernisVerified(candidate),candidateValidatorService.candidateNullCheck(candidate),
-                    candidateValidatorService.nationalityIdValid(candidate.getNationality_id()));
-            if (result.isSuccess()) {
-                return super.add(candidate);
-            }
-            return result;
-    }
+	public DataResult<Candidate> getCandidateByNationalityId(String NationaltiyId) {
+		return new SuccessDataResult<Candidate>(this.candidateDao.findByNationalityId(NationaltiyId));
+	}
 
-    private Result isIdentityNumberExist(String identityNumber) {
-        if (candidateDao.findByNationalIdentity(identityNumber).isPresent()) {
-            return new ErrorResult(Info.nationalityIdentityExistingInfo);
-        }
-        return new SuccessResult();
-    }
-	
-    
-    private Result isMernisVerified(Candidate candidate) {
-        FakePerson fakePerson = new FakePerson(candidate.getFirst_name(), candidate.getLast_name(),
-                candidate.getNationality_id(), candidate.getBirthdate());
-        
-        boolean result = fakeCheckService.validate(fakePerson);
-        if(result){
-            return new SuccessResult();
-        }
-        return new ErrorResult(Info.personInValidInfo);
-    }
+	@Override
+	public Result add(Candidate candidate) {
+		if(getCandidateByNationalityId(candidate.getNationalityId()).getData() != null) {
+			return new ErrorResult("Bu Aday Mevcut");
+		}
+		this.candidateDao.save(candidate);
+		return new SuccessResult(Info.addInfo);
+	}
 
 }

@@ -1,33 +1,36 @@
 package javacamp.hrms.business.concretes;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javacamp.hrms.business.abstracts.EmployerService;
-import javacamp.hrms.business.validation_rules.abstracts.EmployerValidatorService;
-import javacamp.hrms.core.utilities.business.BusinessEngine;
-import javacamp.hrms.core.utilities.results.Result;
+import javacamp.hrms.core.utilities.results.*;
 import javacamp.hrms.dataAccess.abstracts.EmployerDao;
-import javacamp.hrms.dataAccess.abstracts.UserDao;
 import javacamp.hrms.entities.concretes.Employer;
 
-public class EmployerManager extends UserManager<Employer> implements EmployerService {
+@Service
+public class EmployerManager implements EmployerService{
 
-	private EmployerValidatorService employerValidatorService;
+	private EmployerDao employerDao;
 	
 	@Autowired
-	public EmployerManager(UserDao<Employer> userDao, EmployerValidatorService employerValidatorService) {
-		super(userDao);
-		this.employerValidatorService = employerValidatorService;
+	public EmployerManager(EmployerDao employerDao) {
+		this.employerDao = employerDao;
+	}
+
+	
+	@Override
+	public DataResult<List<Employer>> getAll() {
+		return new SuccessDataResult<List<Employer>>(this.employerDao.findAll());
 	}
 	
-	@Override // UserManagerden Override Edildi.
-    public Result add(Employer employer) {
-        Result result= BusinessEngine.run(employerValidatorService.employerNullCheck(employer),
-                employerValidatorService.isEmailCheck(employer));
-        if(result.isSuccess()){
-        return super.add(employer);
-        }
-        return result;
-    }
+	@Override
+	public Result add(Employer employer) {
+		this.employerDao.save(employer);
+       return new SuccessResult("İşveren eklendi.");
+	} 
+
 
 }
