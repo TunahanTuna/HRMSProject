@@ -35,7 +35,14 @@ public class ActivationCode {
 	 private boolean isConfirmed;
 	 
 	 @Column(name="create_date", columnDefinition = "Date defult CURRENT_DATE")
-	 private LocalDate createAt = LocalDate.now();
+	 private LocalDate createDate = LocalDate.now();
 	 
+	 public ActivationCode(int userId, String activationCode, boolean isConfirmed, LocalDate createDate) {
+		 
+		 this.userId = userId;
+		 this.activationCode = activationCode;
+		 this.isConfirmed = isConfirmed;
+		 this.createDate = createDate;
+	 }
 	 
 }
