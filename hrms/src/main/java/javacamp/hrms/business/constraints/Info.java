@@ -5,9 +5,10 @@ public class Info {
 	
 	// User (Kullanici)
 	public static String listInfo = "Kullanicilar listelendi.";
-	public static String addInfo = "Kullanici eklend,.";
+	public static String addInfo = "Kullanici eklendi.";
 	public static String deleteInfo = "Kullanici silindi.";
 	public static String updateInfo = "Kullanici güncellendi.";
+	public static String SuccessfullyRegister = "Kayit Basariyla Gerceklesti";
 	
 	// General (Genel)
 	public static String nullInfo = "Bos birakilamaz!";

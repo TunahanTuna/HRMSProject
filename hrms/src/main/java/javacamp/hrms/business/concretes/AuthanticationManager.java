@@ -1,5 +1,7 @@
 package javacamp.hrms.business.concretes;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,9 +10,13 @@ import javacamp.hrms.business.abstracts.AuthanticationService;
 import javacamp.hrms.business.abstracts.CandidateService;
 import javacamp.hrms.business.abstracts.EmployerService;
 import javacamp.hrms.business.abstracts.UserService;
+import javacamp.hrms.business.constraints.Info;
 import javacamp.hrms.core.services.verification.VerificationService;
 import javacamp.hrms.core.utilities.adapters.ValidationService;
-import javacamp.hrms.core.utilities.results.Result;
+import javacamp.hrms.core.utilities.results.ErrorResult;
+import javacamp.hrms.core.utilities.results.*;
+import javacamp.hrms.entities.abstracts.User;
+import javacamp.hrms.entities.concretes.ActivationCode;
 import javacamp.hrms.entities.concretes.Candidate;
 import javacamp.hrms.entities.concretes.Employer;
 
@@ -40,14 +46,63 @@ public class AuthanticationManager implements AuthanticationService{
 
 	@Override
 	public Result employerRegister(Employer employer, String confirmedPassword) {
-		// TODO Auto-generated method stub
-		return null;
+		if (!checkEmployerNull(employer)) {
+
+			return new ErrorResult(Info.nullInfo);
+		}
+
+		if (!checkEmailAndDomain(employer)) {
+
+			return new ErrorResult(Info.emailExistingInfo);
+		}
+
+		if (!checkEmailExist(employer)) {
+
+			return new ErrorResult(Info.emailExistingInfo);
+		}
+
+		if (!checkPasswordAndConfirmedPassword(employer.getPassword(), confirmedPassword)) {
+
+			return new ErrorResult(Info.passwordConfirmedErrorInfo);
+		}
+
+		employerService.add(employer); // Is veren Ekler
+		
+		String code = verificationService.sendActivationCode();// Aktivasyon kodu ekler
+		ActivationCodeCreater(code, employer.getId(), employer.getEmail());
+		
+		return new SuccessResult(Info.SuccessfullyRegister);
 	}
 
 	@Override
 	public Result candidateRegister(Candidate candidate, String confirmedPassword) {
-		// TODO Auto-generated method stub
-		return null;
+		if (checkWithMernis(Long.parseLong(candidate.getNationalityId()), candidate.getFirstName(),
+				candidate.getLastName(), candidate.getBirthDate().getYear()) == false) {
+			return new ErrorResult(Info.personInValidInfo);
+		}
+
+		if (!checkCandidateNull(candidate, confirmedPassword)) {
+
+			return new ErrorResult(Info.nullInfo);
+		}
+
+		if (!checkExistNationalityId(candidate.getNationalityId())) {
+
+			return new ErrorResult(Info.nationalityIdentityExistingInfo);
+		}
+
+		if (!checkEmailExist(candidate)) {
+
+			return new ErrorResult(Info.emailExistingInfo);
+		}
+
+		
+		candidateService.add(candidate); // Adayi Ekler
+		
+		String code = verificationService.sendActivationCode(); // Aktivasyon kodu ekler
+		ActivationCodeCreater(code, candidate.getId(), candidate.getEmail());
+		
+		return new SuccessResult(Info.SuccessfullyRegister);
 	}
 	
 	// employer alanlarının dolu olup olmadığının kontrolü
@@ -93,7 +148,7 @@ public class AuthanticationManager implements AuthanticationService{
 		return true;
 	}
 	
-	// Tec kimlik numaraasi kontrolu
+	// TC kimlik numaraasi kontrolu
 	private boolean checkExistNationalityId(String nationalityId) {
 
 		if (this.candidateService.getCandidateByNationalityId(nationalityId).getData() == null &&
@@ -104,12 +159,41 @@ public class AuthanticationManager implements AuthanticationService{
 		return false;
 	}
 	
+	// Mernis Kontrolu
 	private boolean checkWithMernis(long nationalId, String firstName, String lastName, int birthYear) {
 
 		if (validationService.checkService(nationalId, firstName, lastName, birthYear)) {
 			return true;
 		}
 		
+		return false;
+	}
+	
+	// Userlar icin email kontrolu
+	private boolean checkEmailExist(User user) {
+
+		if (!(this.userService.getUserByEmail(user.getEmail().toString()).getData() == null)) {
+			return false;
+		}
+		return true;
+		
+	}
+	
+	// Aktivasyon Kodu olusturucu
+	private void ActivationCodeCreater(String code, int id, String email) {
+		
+		ActivationCode activationCode = new ActivationCode(id, code, false, LocalDate.now());
+		this.activationCodeService.add(activationCode);
+	
+	}
+	
+	// Password check
+	private boolean checkPasswordAndConfirmedPassword(String password, String confirmedPassword) {
+
+		if (password.equals(confirmedPassword)) {
+			return true;
+		}
+
 		return false;
 	}
 
