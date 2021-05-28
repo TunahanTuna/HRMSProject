@@ -19,3 +19,7 @@
 
 *<--------------------------------------------------------------------------------------------------------------------------------------------------->*
 #### 7. Gün Ödev 3 için basitleştirme yoluna gidildi. İlişki kısmı henüz tam yapılamadı. Üzerinde çalışılıyor. En başta yapılan modelde Spring boot kendi kendini kapatıyordu. En baştan tekrar yapıldı.
+
+#### 7. Gün Ödev 3 Değerlendirmesi
+
+* Bu ödevde çok zorlandım. Anlamlandıramadığım hatalar alıyordum. Yine de bir şekilde bu hataların üstesinden gelebilsem de son iki gündür beni en çok uğraştıran konu "SpringBootun" kendi kendini hata vermeden kapatmasıydı. Birebir kopyalayarak bazı repoları kullansam da hataların önüne geçemedim. Geçen haftalardaki commitlerimden birisine dönerek en başından yapmaya başladım. Bu hatanın ana sebebi doğru Annotation etiketlerini kullanmamak ve database tarafındaki isimlendirme ile uyum sağlanmamasıymış. 2 günün sonunda bunu fark ettim ama değdi diyebilirim. @CerenBdk ve @ibrhmusta arkadaşlarımızın repoları sayesinde doğru algoritmayı oturtabildim. Her şey için teşekkür ederim hocam. Zorlanmaya Devam!
