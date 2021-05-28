@@ -18,3 +18,4 @@
 ![App](https://github.com/TunahanTuna/HRMSProject/blob/master/screen_shots/swagger_app.png)
 
 *<--------------------------------------------------------------------------------------------------------------------------------------------------->*
+#### 7. Gün Ödev 3 için basitleştirme yoluna gidildi. İlişki kısmı henüz tam yapılamadı. Üzerinde çalışılıyor. En başta yapılan modelde Spring boot kendi kendini kapatıyordu. En baştan tekrar yapıldı.
