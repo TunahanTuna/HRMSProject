@@ -49,5 +49,32 @@ public class AuthanticationManager implements AuthanticationService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	// employer alanlarının dolu olup olmadığının kontrolü
+	private boolean checkEmployerNull(Employer employer) {
+		if((employer.getCompanyName() == null || employer.getCompanyName().isBlank()) && 
+				(employer.getWebSite() == null || employer.getWebSite().isBlank()) &&
+				(employer.getPhoneNumber() == null || employer.getPhoneNumber().isBlank()) &&
+				(employer.getEmail() == null || employer.getEmail().isBlank()) &&
+				(employer.getPassword() == null || employer.getPassword().isBlank())) {
+			
+			return false;
+		}
+		
+		return true;
+	}
+	// Employer mail ve domain kontrolü
+	private boolean checkEmailAndDomain(Employer employer) {
+		
+		String[] emailArr = employer.getEmail().split("@",2);
+		
+		String domain = employer.getWebSite().substring(4,employer.getWebSite().length());
+		
+		if(!emailArr[1].equals(domain)) {
+			return false;
+		}
+		
+		return true;
+	}
 
 }
