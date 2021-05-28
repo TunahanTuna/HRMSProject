@@ -35,7 +35,7 @@ public class CandidateManager implements CandidateService {
 	public DataResult<Candidate> getCandidateByNationalityId(String NationaltiyId) {
 		return new SuccessDataResult<Candidate>(this.candidateDao.findByNationalityId(NationaltiyId));
 	}
-
+	
 	@Override
 	public Result add(Candidate candidate) {
 		if(getCandidateByNationalityId(candidate.getNationalityId()).getData() != null) {

@@ -25,12 +25,11 @@ public class EmployerManager implements EmployerService{
 	public DataResult<List<Employer>> getAll() {
 		return new SuccessDataResult<List<Employer>>(this.employerDao.findAll());
 	}
-	
+
 	@Override
 	public Result add(Employer employer) {
 		this.employerDao.save(employer);
-       return new SuccessResult("İşveren eklendi.");
+       return new SuccessResult("İsveren eklendi.");
 	} 
-
 
 }

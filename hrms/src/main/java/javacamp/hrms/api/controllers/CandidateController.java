@@ -14,7 +14,7 @@ import javacamp.hrms.core.utilities.results.*;
 import javacamp.hrms.entities.concretes.Candidate;
 
 @RestController
-@RequestMapping("api/candidate")
+@RequestMapping("/api/candidate")
 public class CandidateController {
 	
 	private CandidateService candidateService;

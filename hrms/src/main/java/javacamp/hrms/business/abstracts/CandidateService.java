@@ -12,5 +12,6 @@ public interface CandidateService {
 	DataResult<Candidate> getCandidateByNationalityId(String NationaltiyId);
 	
 	Result add(Candidate candidate);
+
 	
 }
