@@ -63,7 +63,7 @@ public class AuthanticationManager implements AuthanticationService{
 		
 		return true;
 	}
-	// Employer mail ve domain kontrolü
+	// Employer mail ve domain kontrolu
 	private boolean checkEmailAndDomain(Employer employer) {
 		
 		String[] emailArr = employer.getEmail().split("@",2);
@@ -75,6 +75,42 @@ public class AuthanticationManager implements AuthanticationService{
 		}
 		
 		return true;
+	}
+	
+	// Aday bilgilerinin alanlarının doluluk kontrolu
+	private boolean checkCandidateNull(Candidate candidate, String confirmedPassword) {
+		if((candidate.getFirstName() == null || candidate.getFirstName().isBlank()) && 
+				(candidate.getLastName() == null || candidate.getLastName().isBlank()) &&
+				(candidate.getNationalityId() == null || candidate.getNationalityId().isBlank()) &&
+				(candidate.getBirthDate() == null) &&
+				(candidate.getEmail() == null || candidate.getEmail().isBlank()) &&
+				(candidate.getPassword() == null || candidate.getPassword().isBlank()) &&
+				(confirmedPassword == null || confirmedPassword.isBlank())) {
+			
+			return false;
+		}
+		
+		return true;
+	}
+	
+	// Tec kimlik numaraasi kontrolu
+	private boolean checkExistNationalityId(String nationalityId) {
+
+		if (this.candidateService.getCandidateByNationalityId(nationalityId).getData() == null &&
+				nationalityId.length() == 11) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private boolean checkWithMernis(long nationalId, String firstName, String lastName, int birthYear) {
+
+		if (validationService.checkService(nationalId, firstName, lastName, birthYear)) {
+			return true;
+		}
+		
+		return false;
 	}
 
 }
