@@ -1,5 +1,7 @@
 package javacamp.hrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,6 +27,6 @@ public class City {
 	private String cityName;
 	
 	@OneToMany(mappedBy = "city")
-	private AdvertForm advert;
+	private List<AdvertForm> advert;
 	
 }
