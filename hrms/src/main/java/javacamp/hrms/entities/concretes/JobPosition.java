@@ -31,6 +31,6 @@ public class JobPosition {
 	@Column(name = "position_name")
 	private String positionName;
 	
-	@OneToMany(mappedBy = "job_position")
+	@OneToMany(mappedBy = "jobPosition")
 	private List<AdvertForm> adverts; 
 }

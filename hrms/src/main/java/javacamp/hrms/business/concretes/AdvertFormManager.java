@@ -43,7 +43,7 @@ public class AdvertFormManager implements AdvertFormService{
 	@Override
 	public DataResult<List<AdvertForm>> getAllByOrderByDescPublishDate() {
 
-		return new SuccessDataResult<List<AdvertForm>>(this.advertFormDao.getAllByOrderByDescPublishDate(),
+		return new SuccessDataResult<List<AdvertForm>>(this.advertFormDao.getAllByOrderByPublishDateDesc(),
 														"Liste Getirildi");
 	}
 
