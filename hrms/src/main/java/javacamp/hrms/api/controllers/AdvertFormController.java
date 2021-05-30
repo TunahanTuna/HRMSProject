@@ -28,9 +28,25 @@ public class AdvertFormController {
 	public Result add(@RequestBody AdvertForm AdvertForm){
 		return this.advertFormService.add(AdvertForm);
 	}
+	
 	@GetMapping("/getAll")
 	public DataResult<List<AdvertForm>> getAll(){
 		return this.advertFormService.getAll();
+	}
+	
+	@GetMapping("/getAllOpenAdverts")
+	public DataResult<List<AdvertForm>> getAllOpenAdverts(){
+		return this.advertFormService.getAllOpenAdverts();
+	}
+	
+	@GetMapping("/getAllByOrderByPublishDateDesc")
+	public DataResult<List<AdvertForm>> getAllByOrderByPublishDateDesc(){
+		return this.advertFormService.getAllByOrderByDescPublishDate();
+	}
+	
+	@GetMapping("/getAllOpenJobAdvertByEmployer")
+	public DataResult<List<AdvertForm>> getAllOpenAdvertFormByEmployer(int id){
+		return this.advertFormService.getAllOpenJobAdvertByEmployer(id);
 	}
 	
 	
