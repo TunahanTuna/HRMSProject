@@ -23,3 +23,7 @@
 #### 7. Gün Ödev 3 Değerlendirmesi
 
 * Bu ödevde çok zorlandım. Anlamlandıramadığım hatalar alıyordum. Yine de bir şekilde bu hataların üstesinden gelebilsem de son iki gündür beni en çok uğraştıran konu "SpringBootun" kendi kendini hata vermeden kapatmasıydı. Birebir kopyalayarak bazı repoları kullansam da hataların önüne geçemedim. Geçen haftalardaki commitlerimden birisine dönerek en başından yapmaya başladım. Bu hatanın ana sebebi doğru Annotation etiketlerini kullanmamak ve database tarafındaki isimlendirme ile uyum sağlanmamasıymış. 2 günün sonunda bunu fark ettim ama değdi diyebilirim. @CerenBdk ve @ibrhmusta arkadaşlarımızın repoları sayesinde doğru algoritmayı oturtabildim. Her şey için teşekkür ederim hocam. Zorlanmaya Devam!
+
+#### 8. Gün Ödev 1 Değerlendirmesi
+
+* son derste anlatılanların geniş kapsamlı bir uygulaması gibiydi. Açıkçası 7. güne ait ödevler daha zordu ama şuanda bu ödev de bitirmiş olmak gerçekten rahat hissettiriyor. Kodlama.io'da paylaşacağım şimdi repoyu. Sonunda bu da bitti :D 
