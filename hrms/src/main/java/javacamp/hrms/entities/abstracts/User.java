@@ -9,6 +9,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name="users")
-
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdverts"})
 public class User { // Base Class oldugu icin abstract bolumune aldim.
 
 	@Id

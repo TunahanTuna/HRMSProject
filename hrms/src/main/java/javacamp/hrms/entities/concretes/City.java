@@ -1,13 +1,9 @@
 package javacamp.hrms.entities.concretes;
 
-
-
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -18,22 +14,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
-@AllArgsConstructor
+@Table(name = "cities")
+@Data
 @NoArgsConstructor
-@Table(name = "job_positions")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","adverts"})
-public class JobPosition {
+@AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","advert"})
+public class City {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "position_name")
-	private String positionName;
+	@Column(name = "city_name")
+	private String cityName;
 	
-	@OneToMany(mappedBy = "jobPosition")
-	private List<AdvertForm> adverts; 
+	@OneToMany(mappedBy = "city")
+	private List<AdvertForm> advert;
+	
 }
