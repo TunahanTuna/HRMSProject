@@ -18,4 +18,5 @@ public interface AdvertFormDao extends JpaRepository<AdvertForm, Integer>{
 	@Query("From AdvertForm where isActive = true and employer_id =:id") // firmaya ait iş ilanlarını getirmek için kullanılır.
 	List<AdvertForm> getAllOpenAdvertByEmployer(int id);
 	
+	AdvertForm getByAdverFormId(int id);
 }

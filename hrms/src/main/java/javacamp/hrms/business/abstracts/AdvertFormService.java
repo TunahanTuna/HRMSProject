@@ -13,8 +13,13 @@ public interface AdvertFormService {
 	DataResult<List<AdvertForm>> getAllOpenAdverts();
 	DataResult<List<AdvertForm>> getAllByOrderByDescPublishDate();
 	DataResult<List<AdvertForm>> getAllOpenJobAdvertByEmployer(int id);
+	DataResult<AdvertForm> getByAdverFormId(int id);
 	
 	Result add(AdvertForm advertForm);
 	Result update(AdvertForm advertForm);
+	
+	Result makePassive(int id);
+	
+	
 
 }

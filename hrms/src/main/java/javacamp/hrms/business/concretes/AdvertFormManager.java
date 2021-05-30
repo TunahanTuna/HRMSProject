@@ -79,4 +79,20 @@ public class AdvertFormManager implements AdvertFormService{
 		return new SuccessResult("Is ilani guncellendi");
 	}
 
+	@Override
+	public Result makePassive(int id) {
+		if(getByAdverFormId(id) == null || getByAdverFormId(id).getData().isActive() == false) {
+			return new ErrorResult("Alan bos ya da zaten pasif");
+		}
+		AdvertForm advertForm = getByAdverFormId(id).getData();
+		advertForm.setActive(false);
+		update(advertForm);
+		return new SuccessResult("İlan pasif hale getirildi");
+	}
+
+	@Override
+	public DataResult<AdvertForm> getByAdverFormId(int id) {
+		return new SuccessDataResult<AdvertForm>(this.advertFormDao.getByAdverFormId(id));
+	}
+
 }
