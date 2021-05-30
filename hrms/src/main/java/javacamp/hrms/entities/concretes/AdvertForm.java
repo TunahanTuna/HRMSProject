@@ -22,7 +22,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "advert_forms")
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobAdverts"})
 public class AdvertForm {
 
 	@Id
