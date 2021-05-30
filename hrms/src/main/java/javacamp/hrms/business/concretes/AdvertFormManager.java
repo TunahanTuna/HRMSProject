@@ -49,7 +49,7 @@ public class AdvertFormManager implements AdvertFormService{
 
 	@Override
 	public DataResult<List<AdvertForm>> getAllOpenJobAdvertByEmployer(int id) {
-		return new SuccessDataResult<List<AdvertForm>>(this.advertFormDao.getAllOpenAdvertByEmployer(id),
+		return new SuccessDataResult<List<AdvertForm>>(this.advertFormDao.getAllOpenAdvertByEmployer_EmployerId(id),
 														"Liste Getirildi");
 	}
 	
