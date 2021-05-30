@@ -84,6 +84,7 @@ public class AdvertFormManager implements AdvertFormService{
 		if(getByAdverFormId(id) == null || getByAdverFormId(id).getData().isActive() == false) {
 			return new ErrorResult("Alan bos ya da zaten pasif");
 		}
+		
 		AdvertForm advertForm = getByAdverFormId(id).getData();
 		advertForm.setActive(false);
 		update(advertForm);

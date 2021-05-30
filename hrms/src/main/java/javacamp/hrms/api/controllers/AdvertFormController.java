@@ -29,6 +29,11 @@ public class AdvertFormController {
 		return this.advertFormService.add(AdvertForm);
 	}
 	
+	@PostMapping("/makePassive")
+	public Result makePassive(int id){
+		return this.advertFormService.makePassive(id);
+	}
+	
 	@GetMapping("/getAll")
 	public DataResult<List<AdvertForm>> getAll(){
 		return this.advertFormService.getAll();
