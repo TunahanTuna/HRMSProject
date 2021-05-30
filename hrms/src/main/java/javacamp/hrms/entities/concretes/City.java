@@ -3,6 +3,7 @@ package javacamp.hrms.entities.concretes;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -22,5 +23,8 @@ public class City {
 	
 	@Column(name = "city_name")
 	private String cityName;
+	
+	@OneToMany(mappedBy = "city")
+	private AdvertForm advert;
 	
 }
