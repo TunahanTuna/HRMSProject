@@ -39,4 +39,12 @@ public class CvExperienceController {
 	public 	Result add(@RequestBody CvExperience cvExperience){
 		return this.cvExperienceService.add(cvExperience);
 	}
+	@PostMapping("/update")
+	public 	Result update(@RequestBody CvExperience cvExperience){
+		return this.cvExperienceService.update(cvExperience);
+	}
+	@PostMapping("/delete")
+	public 	Result delete(@RequestParam int id){
+		return this.cvExperienceService.delete(id);
+	}
 }
