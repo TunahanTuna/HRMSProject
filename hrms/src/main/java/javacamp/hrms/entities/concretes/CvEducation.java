@@ -45,8 +45,8 @@ public class CvEducation {
 	private String startingYear;
 	
 	@Column(name = "graduation_year")
-	
 	private String graduationYear;
+	
 	@ManyToOne()
     @JsonIgnore()
     @JoinColumn(name = "candidate_id")
