@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javacamp.hrms.entities.abstracts.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,7 +38,12 @@ public class Candidate extends User{
     @Column(name="birthdate",columnDefinition = "DATE")
     private Date birthDate;
     
+    @JsonIgnore
     @OneToMany(mappedBy = "candidate")
     private List<CvEducation> cvEducations;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "candidate")
+    private List<CvExperience> cvExperience;
 
 }
