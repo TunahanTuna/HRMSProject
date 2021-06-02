@@ -38,11 +38,11 @@ public class Candidate extends User{
     @Column(name="birthdate",columnDefinition = "DATE")
     private Date birthDate;
     
-    @JsonIgnore
+    
     @OneToMany(mappedBy = "candidate")
     private List<CvEducation> cvEducations;
     
-    @JsonIgnore
+    
     @OneToMany(mappedBy = "candidate")
     private List<CvExperience> cvExperience;
 

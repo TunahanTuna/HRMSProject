@@ -10,4 +10,5 @@ public interface CvEducationDao extends JpaRepository<CvEducation, Integer>{
 	
 	
 	List<CvEducation> getAllByCandidate_idOrderByGraduationYearDesc(int id);
+	List<CvEducation> getAllByCandidate_idOrderByGraduationYearAsc(int id);
 }
