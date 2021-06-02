@@ -1,9 +1,11 @@
 package javacamp.hrms.entities.concretes;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import javacamp.hrms.entities.abstracts.User;
@@ -33,5 +35,8 @@ public class Candidate extends User{
 
     @Column(name="birthdate",columnDefinition = "DATE")
     private Date birthDate;
+    
+    @OneToMany(mappedBy = "candidate")
+    private List<CvEducation> cvEducations;
 
 }
