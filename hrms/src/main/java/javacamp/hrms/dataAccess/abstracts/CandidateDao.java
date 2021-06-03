@@ -9,6 +9,8 @@ import javacamp.hrms.entities.concretes.Candidate;
 @EnableJpaRepositories
 public interface CandidateDao extends JpaRepository<Candidate, Integer> {
 
+	
+	
 	Candidate findByNationalityId(String nationalityId);
 	
 }

@@ -29,5 +29,10 @@ public class UserController {
 		public DataResult<List<User>> getAll(){
 			return this.userService.getAll();
 		}
+		
+		@GetMapping("/getUserByEmail")
+		public DataResult<User> getUserByEmail(String email){
+			return this.userService.getUserByEmail(email);
+		}
 
 }

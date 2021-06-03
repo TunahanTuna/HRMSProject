@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javacamp.hrms.business.abstracts.CandidateService;
@@ -30,9 +31,16 @@ public class CandidateController {
 		return this.candidateService.getAll();
 	}
 	
+	@GetMapping("/getCandidateByNationalityId")
+	public DataResult<Candidate> getCandidateByNationalityId(@RequestParam String NationaltiyId){
+		return this.candidateService.getCandidateByNationalityId(NationaltiyId);
+	}
+	
 	@PostMapping("/add")
 	public Result add(@RequestBody Candidate candidate){
 		return this.candidateService.add(candidate);
 	}
+	
+	
 
 }
