@@ -12,6 +12,7 @@ public interface CvForeignLanguageService {
 	Result update(CvForeignLanguage cvForeignLanguage);
 	Result delete(int id);
 	
+	DataResult<List<CvForeignLanguage>> getAll();
 	DataResult<List<CvForeignLanguage>> getAllByCandidate_id(int id);
 	
 }

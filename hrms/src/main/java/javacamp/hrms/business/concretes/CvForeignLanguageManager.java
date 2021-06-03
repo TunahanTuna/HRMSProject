@@ -47,4 +47,9 @@ public class CvForeignLanguageManager implements CvForeignLanguageService {
 															  Info.listInfo);
 	}
 
+	@Override
+	public DataResult<List<CvForeignLanguage>> getAll() {
+		return new SuccessDataResult<List<CvForeignLanguage>>(this.cvForeignLanguageDao.findAll(), Info.listInfo);
+	}
+
 }
