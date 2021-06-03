@@ -26,6 +26,10 @@ public class CvEducationController {
 		this.cvEducationService = cvEducationService;
 	}
 	
+	@GetMapping("/getById")
+	public DataResult<CvEducation> getById(@RequestParam int id){
+		return this.cvEducationService.getById(id);
+	}
 	@GetMapping("/getAllByCandidate_idOrderByGraduationYearDesc")
 	public DataResult<List<CvEducation>> getAllByCandidate_idOrderByGraduationYearDesc(@RequestParam int id){
 		return this.cvEducationService.getAllByCandidateIdOrderByGraduationYearDesc(id);

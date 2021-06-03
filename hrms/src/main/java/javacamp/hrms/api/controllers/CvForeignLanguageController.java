@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javacamp.hrms.business.abstracts.CvForeignLanguageService;
 import javacamp.hrms.core.utilities.results.*;
+import javacamp.hrms.entities.concretes.CvEducation;
 import javacamp.hrms.entities.concretes.CvForeignLanguage;
 
 @RestController
@@ -23,6 +24,11 @@ public class CvForeignLanguageController {
 	@Autowired
 	public CvForeignLanguageController(CvForeignLanguageService cvForeignLanguageService) {
 		this.cvForeignLanguageService = cvForeignLanguageService;
+	}
+	
+	@GetMapping("/getById")
+	public DataResult<CvForeignLanguage> getById(@RequestParam int id){
+		return this.cvForeignLanguageService.getById(id);
 	}
 	
 	@GetMapping("/getAll")

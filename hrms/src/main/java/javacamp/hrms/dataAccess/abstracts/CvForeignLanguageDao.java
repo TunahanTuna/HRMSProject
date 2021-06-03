@@ -8,6 +8,7 @@ import javacamp.hrms.entities.concretes.CvForeignLanguage;
 
 public interface CvForeignLanguageDao extends JpaRepository<CvForeignLanguage, Integer> {
 
+	CvForeignLanguage getByLanguageId(int id);
 	List<CvForeignLanguage> getAllByCandidate_id(int id);
 	
 }

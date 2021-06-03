@@ -8,7 +8,7 @@ import javacamp.hrms.entities.concretes.CvEducation;
 
 public interface CvEducationDao extends JpaRepository<CvEducation, Integer>{
 	
-	
+	CvEducation getBySchoolId(int id);
 	List<CvEducation> getAllByCandidate_idOrderByGraduationYearDesc(int id);
 	List<CvEducation> getAllByCandidate_idOrderByGraduationYearAsc(int id);
 }

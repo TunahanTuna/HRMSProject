@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service;
 
 import javacamp.hrms.business.abstracts.CvExperienceService;
 import javacamp.hrms.business.constraints.Info;
-import javacamp.hrms.core.utilities.results.DataResult;
 import javacamp.hrms.core.utilities.results.*;
-import javacamp.hrms.core.utilities.results.SuccessResult;
 import javacamp.hrms.dataAccess.abstracts.CvExperienceDao;
+import javacamp.hrms.entities.concretes.CvEducation;
 import javacamp.hrms.entities.concretes.CvExperience;
 
 @Service
@@ -50,6 +49,11 @@ public class CvExperienceManager implements CvExperienceService {
 	@Override
 	public DataResult<List<CvExperience>> getAllByCandidateIdOrderByEndYearDesc(int id) {
 		return new SuccessDataResult<List<CvExperience>>(this.cvExperienceDao.getAllByCandidate_idOrderByEndYearDesc(id),Info.listInfo);
+	}
+
+	@Override
+	public DataResult<CvExperience> getById(int id) {
+		return new SuccessDataResult<CvExperience>(this.cvExperienceDao.getById(id),"Id'ye göre getirdim");
 	}
 
 }

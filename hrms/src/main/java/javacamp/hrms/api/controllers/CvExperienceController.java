@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javacamp.hrms.business.abstracts.CvExperienceService;
 import javacamp.hrms.core.utilities.results.*;
+import javacamp.hrms.entities.concretes.CvEducation;
 import javacamp.hrms.entities.concretes.CvExperience;
 
 @RestController
@@ -23,6 +24,11 @@ public class CvExperienceController {
 	@Autowired
 	public CvExperienceController(CvExperienceService cvExperienceService) {
 		this.cvExperienceService = cvExperienceService;
+	}
+	
+	@GetMapping("/getById")
+	public DataResult<CvExperience> getById(@RequestParam int id){
+		return this.cvExperienceService.getById(id);
 	}
 	
 	@GetMapping("/getAllByCandidateIdOrderByEndYearDesc")

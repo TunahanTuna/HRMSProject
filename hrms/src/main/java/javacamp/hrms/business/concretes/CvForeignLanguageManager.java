@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service;
 
 import javacamp.hrms.business.abstracts.CvForeignLanguageService;
 import javacamp.hrms.business.constraints.Info;
-import javacamp.hrms.core.utilities.results.DataResult;
-import javacamp.hrms.core.utilities.results.Result;
 import javacamp.hrms.core.utilities.results.*;
 import javacamp.hrms.dataAccess.abstracts.CvForeignLanguageDao;
+import javacamp.hrms.entities.concretes.CvExperience;
 import javacamp.hrms.entities.concretes.CvForeignLanguage;
 
 @Service
@@ -50,6 +49,11 @@ public class CvForeignLanguageManager implements CvForeignLanguageService {
 	@Override
 	public DataResult<List<CvForeignLanguage>> getAll() {
 		return new SuccessDataResult<List<CvForeignLanguage>>(this.cvForeignLanguageDao.findAll(), Info.listInfo);
+	}
+
+	@Override
+	public DataResult<CvForeignLanguage> getById(int id) {
+		return new SuccessDataResult<CvForeignLanguage>(this.cvForeignLanguageDao.getByLanguageId(id),"Id'ye göre getirdim");
 	}
 
 }

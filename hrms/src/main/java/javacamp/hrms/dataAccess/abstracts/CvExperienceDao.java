@@ -8,6 +8,8 @@ import javacamp.hrms.entities.concretes.CvExperience;
 
 public interface CvExperienceDao  extends JpaRepository<CvExperience, Integer> {
 
+	
+	CvExperience getById(int id);
 	List<CvExperience> getAllByCandidate_idOrderByEndYearDesc(int id);
 	
 }

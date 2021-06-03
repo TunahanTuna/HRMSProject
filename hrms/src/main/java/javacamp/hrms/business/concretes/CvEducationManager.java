@@ -53,5 +53,10 @@ public class CvEducationManager  implements CvEducationService{
 	public DataResult<List<CvEducation>> getAll() {
 		return new SuccessDataResult<List<CvEducation>>(this.cvEducationDao.findAll(),Info.listInfo);
 	}
+
+	@Override
+	public DataResult<CvEducation> getById(int id) {
+		return new SuccessDataResult<CvEducation>(this.cvEducationDao.getBySchoolId(id),"Id'ye göre getirdim");
+	}
 	
 }
