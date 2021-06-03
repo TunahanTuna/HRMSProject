@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javacamp.hrms.entities.abstracts.User;
 import lombok.AllArgsConstructor;
@@ -50,6 +49,9 @@ public class Candidate extends User{
     
     @OneToMany(mappedBy = "candidate")
     private List<CvForeignLanguage> cvLink;
+    
+    @OneToMany(mappedBy = "candidate")
+    private List<CvSkill> cvSkill;
 
 
 }
