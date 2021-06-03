@@ -52,6 +52,9 @@ public class Candidate extends User{
     
     @OneToMany(mappedBy = "candidate")
     private List<CvSkill> cvSkill;
+    
+    @OneToMany(mappedBy = "candidate")
+    private List<CvCoverLetter> cvCoverLetter;
 
 
 }
