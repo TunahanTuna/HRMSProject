@@ -24,7 +24,7 @@ public class CvLink {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name= "ink_id")
+	@Column(name= "link_id")
 	private int linkId;
 	
 	@Column(name = "name")

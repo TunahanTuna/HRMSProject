@@ -47,12 +47,12 @@ public class CvSkillController {
 	}
 	
 	@GetMapping("/getAllByCandidate_id")
-	public DataResult<List<CvSkill>> getAllByCandidate_id(int id) {
+	public DataResult<List<CvSkill>> getAllByCandidate_id(@RequestParam int id) {
 		return this.cvSkillService.getAllByCandidate_id(id);
 	}
 	
 	@GetMapping("/getById")
-	public DataResult<CvSkill> getById(int id) {
+	public DataResult<CvSkill> getById(@RequestParam int id) {
 		return this.cvSkillService.getById(id);
 	}
 }

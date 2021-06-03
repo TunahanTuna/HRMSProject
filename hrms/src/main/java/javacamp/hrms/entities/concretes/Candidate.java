@@ -48,7 +48,7 @@ public class Candidate extends User{
     private List<CvForeignLanguage> cvForeignLanguage;
     
     @OneToMany(mappedBy = "candidate")
-    private List<CvForeignLanguage> cvLink;
+    private List<CvLink> cvLink;
     
     @OneToMany(mappedBy = "candidate")
     private List<CvSkill> cvSkill;
