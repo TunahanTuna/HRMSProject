@@ -2,6 +2,7 @@ package javacamp.hrms.entities.concretes;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +31,7 @@ public class CvImage {
 	@Column(name = "url")
 	private String url;
 	
-	@OneToOne()
+	@OneToOne(optional = false, fetch = FetchType.LAZY)
 	@JsonIgnore
 	@JoinColumn(name = "candidate_id")
 	private Candidate candidate;

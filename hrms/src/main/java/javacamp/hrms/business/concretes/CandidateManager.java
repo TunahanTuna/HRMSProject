@@ -45,4 +45,10 @@ public class CandidateManager implements CandidateService {
 		return new SuccessResult(Info.addInfo);
 	}
 
+	@Override
+	public DataResult<Candidate> getById(int id) {
+		
+		return new SuccessDataResult<Candidate>(this.candidateDao.getById(id));
+	}
+
 }

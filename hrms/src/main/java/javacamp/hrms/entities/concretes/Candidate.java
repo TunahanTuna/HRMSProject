@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -57,7 +58,7 @@ public class Candidate extends User{
     @OneToMany(mappedBy = "candidate")
     private List<CvCoverLetter> cvCoverLetter;
     
-    @OneToOne(mappedBy = "candidate")
+    @OneToOne(mappedBy = "candidate",optional= false, fetch = FetchType.LAZY)
     private List<CvImage> cvImage;
 
 

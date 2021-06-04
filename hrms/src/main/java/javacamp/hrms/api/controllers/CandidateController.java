@@ -36,6 +36,11 @@ public class CandidateController {
 		return this.candidateService.getCandidateByNationalityId(NationaltiyId);
 	}
 	
+	@GetMapping("/getById")
+	public DataResult<Candidate> getById(@RequestParam int id){
+		return this.candidateService.getById(id);
+	}
+	
 	@PostMapping("/add")
 	public Result add(@RequestBody Candidate candidate){
 		return this.candidateService.add(candidate);
