@@ -45,4 +45,22 @@ public class CandidateManager implements CandidateService {
 		return new SuccessResult(Info.addInfo);
 	}
 
+	@Override
+	public DataResult<Candidate> getById(int id) {
+		
+		return new SuccessDataResult<Candidate>(this.candidateDao.getById(id));
+	}
+
+	@Override
+	public Result update(Candidate candidate) {
+		this.candidateDao.save(candidate);
+		return new SuccessResult("Başarılı güncelleme");
+	}
+
+	@Override
+	public Result delete(int id) {
+		this.candidateDao.deleteById(id);
+		return new SuccessResult("Başarılı silme");
+	}
+
 }
