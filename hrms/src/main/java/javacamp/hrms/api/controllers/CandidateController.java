@@ -46,6 +46,16 @@ public class CandidateController {
 		return this.candidateService.add(candidate);
 	}
 	
+	@PostMapping("/update")
+	public Result update(@RequestBody Candidate candidate){
+		return this.candidateService.update(candidate);
+	}
+	
+	@PostMapping("/delete")
+	public Result delete(@RequestParam int id){
+		return this.candidateService.delete(id);
+	}
+	
 	
 
 }

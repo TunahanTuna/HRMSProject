@@ -14,6 +14,8 @@ public interface CandidateService {
 	DataResult<Candidate> getById(int id);
 	
 	Result add(Candidate candidate);
+	Result update(Candidate candidate);
+	Result delete(int id);
 
 	
 }
