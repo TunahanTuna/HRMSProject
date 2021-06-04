@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
-import javacamp.hrms.business.abstracts.CandidateService;
+import javacamp.hrms.business.abstracts.*;
 import javacamp.hrms.business.constraints.Info;
 import javacamp.hrms.core.utilities.results.DataResult;
 import javacamp.hrms.core.utilities.results.Result;
 import javacamp.hrms.core.utilities.results.*;
 import javacamp.hrms.dataAccess.abstracts.CandidateDao;
 import javacamp.hrms.entities.concretes.Candidate;
+import javacamp.hrms.entities.dtos.CandidateCvDto;
 
 
 @Service
@@ -22,7 +22,6 @@ public class CandidateManager implements CandidateService {
 	
 	@Autowired
 	public CandidateManager(CandidateDao candidateDao) {
-		super();
 		this.candidateDao = candidateDao;
 	}
 
@@ -61,6 +60,34 @@ public class CandidateManager implements CandidateService {
 	public Result delete(int id) {
 		this.candidateDao.deleteById(id);
 		return new SuccessResult("Başarılı silme");
+	}
+
+	@Override
+	public DataResult<CandidateCvDto> getByCandidateCvDtoId(int id) {
+		Candidate candidate = this.candidateDao.getById(id);
+		CandidateCvDto cv = new CandidateCvDto();
+		cv.cvCoverLetters = candidate.getCvCoverLetter();
+		cv.cvEducations = candidate.getCvEducations();
+		cv.cvExperience = candidate.getCvExperience();
+		cv.cvForeignLanguage = candidate.getCvForeignLanguage();
+		cv.cvImages = candidate.getCvImage();
+		cv.cvLinks = candidate.getCvLink();
+		cv.cvSkills = candidate.getCvSkill();
+		return new SuccessDataResult<CandidateCvDto>(cv,"Id'ye göre Listeleme");
+	}
+
+	@Override
+	public DataResult<CandidateCvDto> getByCandidateCvDtoNationalityId(String nationalityId) {
+		Candidate candidate = this.candidateDao.findByNationalityId(nationalityId);
+		CandidateCvDto cv = new CandidateCvDto();
+		cv.cvCoverLetters = candidate.getCvCoverLetter();
+		cv.cvEducations = candidate.getCvEducations();
+		cv.cvExperience = candidate.getCvExperience();
+		cv.cvForeignLanguage = candidate.getCvForeignLanguage();
+		cv.cvImages = candidate.getCvImage();
+		cv.cvLinks = candidate.getCvLink();
+		cv.cvSkills = candidate.getCvSkill();
+		return new SuccessDataResult<CandidateCvDto>(cv,"NationalityId'ye göre Listeleme");
 	}
 
 }
