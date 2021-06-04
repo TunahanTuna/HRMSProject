@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 import javacamp.hrms.business.abstracts.*;
 import javacamp.hrms.business.constraints.Info;
@@ -20,27 +19,10 @@ import javacamp.hrms.entities.dtos.CandidateCvDto;
 public class CandidateManager implements CandidateService {
 
 	private CandidateDao candidateDao;
-	private CvCoverLetterService cvCoverLetterService;
-	private CvEducationService	cvEducationService;
-	private CvExperienceService cvExperienceService;
-	private CvForeignLanguageService cvForeignLanguageService;
-	private CvImageService cvImageService;
-	private CvLinkService cvLinkService;
-	private CvSkillService cvSkillService;
 	
 	@Autowired
-	public CandidateManager(CandidateDao candidateDao, CvCoverLetterService cvCoverLetterService,
-			CvEducationService cvEducationService, CvExperienceService cvExperienceService,
-			CvForeignLanguageService cvForeignLanguageService, CvImageService cvImageService,
-			CvLinkService cvLinkService, CvSkillService cvSkillService) {
+	public CandidateManager(CandidateDao candidateDao) {
 		this.candidateDao = candidateDao;
-		this.cvCoverLetterService = cvCoverLetterService;
-		this.cvEducationService = cvEducationService;
-		this.cvExperienceService = cvExperienceService;
-		this.cvForeignLanguageService = cvForeignLanguageService;
-		this.cvImageService = cvImageService;
-		this.cvLinkService = cvLinkService;
-		this.cvSkillService = cvSkillService;
 	}
 
 	@Override
@@ -82,15 +64,30 @@ public class CandidateManager implements CandidateService {
 
 	@Override
 	public DataResult<CandidateCvDto> getByCandidateCvDtoId(int id) {
-		CandidateCvDto candidate = new CandidateCvDto();
-		candidate.cvCoverLetters = this.cvCoverLetterService.getAllByCandidate_id(id).getData();
-		candidate.cvEducations = this.cvEducationService.getAllByCandidateIdOrderByGraduationYearDesc(id).getData();
-		candidate.cvExperience = this.cvExperienceService.getAllByCandidateIdOrderByEndYearDesc(id).getData();
-		candidate.cvForeignLanguage = this.cvForeignLanguageService.getAllByCandidate_id(id).getData();
-		candidate.cvImages = this.cvImageService.getByCandidate_id(id).getData();
-		candidate.cvLinks = this.cvLinkService.getAllByCandidateId(id).getData();
-		candidate.cvSkills = this.cvSkillService.getAllByCandidate_id(id).getData();
-		return new SuccessDataResult<CandidateCvDto>(candidate,"Başarılı Listeleme");
+		Candidate candidate = this.candidateDao.getById(id);
+		CandidateCvDto cv = new CandidateCvDto();
+		cv.cvCoverLetters = candidate.getCvCoverLetter();
+		cv.cvEducations = candidate.getCvEducations();
+		cv.cvExperience = candidate.getCvExperience();
+		cv.cvForeignLanguage = candidate.getCvForeignLanguage();
+		cv.cvImages = candidate.getCvImage();
+		cv.cvLinks = candidate.getCvLink();
+		cv.cvSkills = candidate.getCvSkill();
+		return new SuccessDataResult<CandidateCvDto>(cv,"Id'ye göre Listeleme");
+	}
+
+	@Override
+	public DataResult<CandidateCvDto> getByCandidateCvDtoNationalityId(String nationalityId) {
+		Candidate candidate = this.candidateDao.findByNationalityId(nationalityId);
+		CandidateCvDto cv = new CandidateCvDto();
+		cv.cvCoverLetters = candidate.getCvCoverLetter();
+		cv.cvEducations = candidate.getCvEducations();
+		cv.cvExperience = candidate.getCvExperience();
+		cv.cvForeignLanguage = candidate.getCvForeignLanguage();
+		cv.cvImages = candidate.getCvImage();
+		cv.cvLinks = candidate.getCvLink();
+		cv.cvSkills = candidate.getCvSkill();
+		return new SuccessDataResult<CandidateCvDto>(cv,"NationalityId'ye göre Listeleme");
 	}
 
 }

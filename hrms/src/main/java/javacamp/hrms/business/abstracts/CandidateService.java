@@ -19,6 +19,7 @@ public interface CandidateService {
 	Result delete(int id);
 	
 	DataResult<CandidateCvDto> getByCandidateCvDtoId(int id);
+	DataResult<CandidateCvDto> getByCandidateCvDtoNationalityId(String nationalityId);
 
 	
 }

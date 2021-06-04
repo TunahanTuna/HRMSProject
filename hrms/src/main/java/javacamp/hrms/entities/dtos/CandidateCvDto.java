@@ -6,7 +6,6 @@ import javacamp.hrms.entities.concretes.*;
 
 public class CandidateCvDto {
 
-	public Candidate candidate;
 	public List<CvCoverLetter> cvCoverLetters;
 	public List<CvEducation> cvEducations;
 	public List<CvExperience> cvExperience;
