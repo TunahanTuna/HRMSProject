@@ -35,5 +35,9 @@ public class CvImageController {
 		return this.cvImageService.add(cvImage, filePath);
 	}
 	
+	public Result update() {
+		return null;
+	}
+	
 	
 }
