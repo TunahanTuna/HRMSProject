@@ -29,10 +29,10 @@ public class CvImageManager implements CvImageService {
 	}
 
 	@Override
-	public Result add(CvImage cvImage, MultipartFile filePath) throws IOException {
+	public Result add(CvImage cvImage, MultipartFile filePath){
 
-		Map<String,Object> image = this.cloudinaryAdapterService.uploadImage(filePath).getData();
-		cvImage.setUrl(image.get("url").toString());
+		Map<String,String> image = this.cloudinaryAdapterService.uploadImage(filePath).getData();
+		cvImage.setUrl(image.get("url"));
 		this.cvImageDao.save(cvImage);
 		return new SuccessResult("Ekleme başarılı");
 	}

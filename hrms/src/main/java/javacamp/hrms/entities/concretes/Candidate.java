@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javacamp.hrms.entities.abstracts.User;
 import lombok.AllArgsConstructor;
@@ -58,8 +59,9 @@ public class Candidate extends User{
     @OneToMany(mappedBy = "candidate")
     private List<CvCoverLetter> cvCoverLetter;
     
+    @JsonIgnore
     @OneToOne(mappedBy = "candidate",optional= false, fetch = FetchType.LAZY)
-    private List<CvImage> cvImage;
+    private CvImage cvImage;
 
 
 }

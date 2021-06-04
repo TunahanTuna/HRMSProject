@@ -10,7 +10,7 @@ import javacamp.hrms.entities.concretes.CvImage;
 
 public interface CvImageService {
 
-	Result add(CvImage cvImage,  MultipartFile filePath)throws IOException ;
+	Result add(CvImage cvImage,  MultipartFile filePath);
 	Result update(CvImage cvImage);
 	Result delete(int id);
 	

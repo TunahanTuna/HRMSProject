@@ -25,11 +25,18 @@ public class CloudinaryAdapterManager implements CloudinaryAdapterService {
 	}
 
 	@Override
-	public DataResult<Map> uploadImage(MultipartFile filePath) throws IOException {
+	public DataResult<Map> uploadImage(MultipartFile filePath) {
 
-		Map<String,Object> result = (Map<String,Object>)cloudinary.uploader().upload(filePath.getBytes(), ObjectUtils.emptyMap());
-	
-		return new SuccessDataResult<Map>(result);
+		Map<String, String> result;
+		try {
+			result = (Map<String,String>)cloudinary.uploader().upload(filePath.getBytes(), ObjectUtils.emptyMap());
+			return new SuccessDataResult<Map>(result);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new ErrorDataResult();
+		
 	}
 	
 }
