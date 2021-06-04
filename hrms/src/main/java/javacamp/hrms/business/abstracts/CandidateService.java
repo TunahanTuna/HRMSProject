@@ -4,6 +4,7 @@ import java.util.List;
 
 import javacamp.hrms.core.utilities.results.*;
 import javacamp.hrms.entities.concretes.Candidate;
+import javacamp.hrms.entities.dtos.CandidateCvDto;
 
 public interface CandidateService {
 
@@ -16,6 +17,8 @@ public interface CandidateService {
 	Result add(Candidate candidate);
 	Result update(Candidate candidate);
 	Result delete(int id);
+	
+	DataResult<CandidateCvDto> getByCandidateCvDtoId(int id);
 
 	
 }

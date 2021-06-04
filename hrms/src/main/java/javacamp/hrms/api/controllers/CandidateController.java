@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javacamp.hrms.business.abstracts.CandidateService;
 import javacamp.hrms.core.utilities.results.*;
 import javacamp.hrms.entities.concretes.Candidate;
+import javacamp.hrms.entities.dtos.CandidateCvDto;
 
 @RestController
 @RequestMapping("/api/candidate")
@@ -34,6 +35,11 @@ public class CandidateController {
 	@GetMapping("/getCandidateByNationalityId")
 	public DataResult<Candidate> getCandidateByNationalityId(@RequestParam String NationaltiyId){
 		return this.candidateService.getCandidateByNationalityId(NationaltiyId);
+	}
+	
+	@GetMapping("/getByCandidateCvDtoId")
+	public DataResult<CandidateCvDto> getByCandidateCvDtoId(@RequestParam int id){
+		return this.candidateService.getByCandidateCvDtoId(id);
 	}
 	
 	@GetMapping("/getById")
