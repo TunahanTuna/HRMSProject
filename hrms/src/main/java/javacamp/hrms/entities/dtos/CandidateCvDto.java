@@ -10,7 +10,7 @@ public class CandidateCvDto {
 	public List<CvEducation> cvEducations;
 	public List<CvExperience> cvExperience;
 	public List<CvForeignLanguage> cvForeignLanguage;
-	public CvImage cvImages;
+	public List<CvImage> cvImages;
 	public List<CvLink> cvLinks;
 	public List<CvSkill> cvSkills;
 	
