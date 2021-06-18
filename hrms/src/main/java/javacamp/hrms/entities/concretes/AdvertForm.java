@@ -69,6 +69,10 @@ public class AdvertForm {
 	@JoinColumn(name = "worktype_id")
 	private AdvertFormWorkType advertFormWorkType;
 	
+	@ManyToOne
+	@JoinColumn(name = "worktime_id")
+	private AdvertFormWorkTime advertFormWorkTime;
+	
 	
 	
 }
