@@ -65,6 +65,10 @@ public class AdvertForm {
 	@JoinColumn(name = "employer_id")
 	private Employer employer;
 	
+	@ManyToOne
+	@JoinColumn(name = "worktype_id")
+	private AdvertFormWorkType advertFormWorkType;
+	
 	
 	
 }

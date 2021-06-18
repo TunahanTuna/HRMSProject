@@ -30,6 +30,10 @@ public class AdvertFormController {
 	public Result add(@RequestBody AdvertForm AdvertForm){
 		return this.advertFormService.add(AdvertForm);
 	}
+	@PostMapping("/update")
+	public Result update(@RequestBody AdvertForm AdvertForm){
+		return this.advertFormService.update(AdvertForm);
+	}
 	
 	@PostMapping("/makePassive")
 	public Result makePassive(int id){
