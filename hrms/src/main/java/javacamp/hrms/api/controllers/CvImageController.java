@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ import javacamp.hrms.entities.concretes.CvImage;
 
 @RestController
 @RequestMapping("/api/cvImage")
+@CrossOrigin
 public class CvImageController {
 
 	private CvImageService cvImageService;
